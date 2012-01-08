@@ -529,3 +529,7 @@ svg {
 	height: 500px;
 	width: 700px;
 }
+
+span.description {
+  width: 400px;
+}
