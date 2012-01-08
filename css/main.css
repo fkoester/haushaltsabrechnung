@@ -1,0 +1,531 @@
+﻿/* -damit sich die HTML 5 Elemente (header, section, footer, aside usw.) wie ganz normale Block-Level-Elemente verhalten- */  
+header, section, footer, aside, nav, article {  
+	display: block;  
+}
+
+@font-face {
+	font-family: 'Luckiest Guy';
+	font-style: normal;
+	font-weight: normal;
+	src: local("LuckiestGuy.ttf"), url("../fonts/LuckiestGuy.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'Carter One';
+	font-style: normal;
+	font-weight: normal;
+	src: local("CarterOne.ttf"), url("../fonts/CarterOne.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'Chango';
+	font-style: normal;
+	font-weight: normal;
+	src: local("Chango-Regular.ttf"), url("../fonts/Chango-Regular.ttf") format("truetype");
+}
+
+/* BODY LAYOUT ------------------------------------------ */
+
+body {
+	color: #444;
+	font-family: Verdana, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+/* HEADER & NAVIGATION ------------------------------ */
+
+#header {
+	background: #333;
+	padding: 0 15px;
+}
+
+#header h1 {
+	margin: 0;
+	padding: 10px 0 0 0;
+	height: 30px;
+	color: #A5A5A5;
+	font-family: 'Chango';
+	font-weight: 100;
+}
+
+/* LOGIN ------------------------------------------ */
+#login {
+	text-align: center;
+	margin-top: 5%;
+}
+
+#login h1 {
+	font-family: 'Chango';
+	font-weight: 100;
+}
+
+#login .info-section {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#loginform fieldset {
+	display: table;
+	border: 0;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#loginform .form-field {
+	display: table-row;
+}
+
+#loginform label {
+	text-align:right;
+	display: table-cell;
+	padding-right: 10px;
+}
+
+#loginform .textfield {
+	margin:3px;
+	height:20px;
+	width:200px;
+	display: table-cell;
+}
+
+#login-button {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* CONTENT ------------------------------------------ */
+
+#content {
+	position: absolute;
+	left: 210px;
+	right: 0px;
+	padding: 0 15px 20px 0;
+	margin: 0 0 30px 0;
+}
+
+#content h2,h3{
+	font-family: 'Carter One';
+}
+
+/* SIDEBAR ------------------------------------------ */
+
+aside {
+	position: absolute;
+	border-radius: 15px;
+	width: 200px;
+	height: 100px;
+}
+
+/* Navigation ------------------------------------------ */
+
+ul.mainNav li {
+	font-size: 15px;
+	color: #cccccc;
+	font-family: Verdana, Arial, sans-serif;
+	list-style: none;
+	display: inline;
+	margin: 0.4em; padding: 0;
+}
+
+ul.mainNav li a{
+	text-decoration: none;
+	color: #cccccc;
+}
+
+ul.mainNav li a.active{
+	text-decoration: none; font-weight: bold;
+	color: #ffffff;
+} 
+
+ul.sideNav {
+	list-style: square
+}
+
+ul.sideNav li {
+	font-size: 13px;
+	font-family: Verdana, Arial, sans-serif;
+	margin: 0.4em; padding: 0;
+}
+
+ul.sideNav li a{
+	text-decoration: none;
+	color: black;
+}
+
+ul.sideNav li a.active{
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+}
+
+/* Sonstiges */
+
+.negative-balance {
+	color: red;
+}
+
+.positive-balance {
+	color: green;
+}
+
+a.sort-key {
+	margin-right: 2px;
+}
+
+a.sort-dir-asc {
+	display: block;
+	width: 10px;
+	height: 5px;
+	background: url("../img/sort_asc.svg") no-repeat;
+	background-size: 100%;
+	float: right;
+	margin: 0 1px 0 1px;
+}
+
+a.sort-dir-asc span {
+	display: none
+}
+
+a.sort-dir-desc {
+	display: block;
+	width: 10px;
+	height: 5px;
+	background: url("../img/sort_desc.svg") no-repeat;
+	background-size: 100%;
+	float: right;
+	margin: 0 1px 0 1px;
+}
+
+a.sort-dir-desc span {
+	display: none
+}
+
+a.edit-link {
+	width: 25px;
+	height: 16px;
+	background: url("../img/edit.svg") no-repeat;
+	background-size: 25px 13px;
+	float: right;
+	margin: 0;
+}
+
+a.edit-link span {
+	display: none;
+}
+
+a.standing-order-link {
+	width: 25px;
+	height: 16px;
+	background: url("../img/recurring.png") no-repeat;
+	background-size: 16px 16px;
+	float: right;
+        margin: 0;
+}
+
+a.standing-order-link span {
+	display: none;
+}
+
+tr:nth-child(even) {
+	background-color: #DDD;
+}
+
+th {
+	font-weight: bold; 
+	color: #6D929B;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	padding: 6px 6px 6px 12px;
+	color: #6D929B;
+}
+
+table.transactions {
+	margin-right: 20px;
+	font-size: 0.9em;
+}
+
+colgroup .description-column {
+	width: 40%;
+}
+
+.awesome, .awesome:visited {
+	background: #222; 
+	display: inline-block; 
+	padding: 5px 10px 6px; 
+	color: #fff; 
+	text-decoration: none;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+}
+
+.mainNav a:hover {
+	color: white;
+}
+
+.awesome:hover {
+	background-color: #000;
+}
+
+.small.awesome {
+	font-size: 11px;
+}
+.medium.awesome {
+	font-size: 13px;
+}
+
+.large.awesome {
+	font-size: 14px;
+	padding: 8px 14px 9px;
+}
+
+.green.awesome {
+	background-color: #348017;
+}
+
+.green.awesome:hover {
+	background-color: #339900;;
+}
+
+.red.awesome {
+	background-color: #e33100;
+}
+
+.red.awesome:hover {
+	background-color: #872300;
+}
+
+.table-form label {
+	width: 210px;
+	padding-right: 10px;
+	text-align: right;
+	display: table-cell;
+}
+
+.table-form .field-input {
+	display: table-cell;
+	overflow: visible;
+}
+
+#sub-transactions-buttons-cell {
+	width: 500px;
+}
+
+#message-form label {
+	width: 80px;
+}
+
+input.submit {
+	margin-top: 20px;
+}
+
+legend {
+	font-size: 1.1em;
+	font-family: 'Carter One'
+}
+
+#add-sub-transaction-button {
+	position: relative;
+	top: -10px;
+	float:right;
+	margin-left: 10px;
+}
+
+#remove-sub-transaction-button {
+	position: relative;
+	top: -10px;
+	float:right;
+}
+
+div.sub-transaction-form {
+	clear: both;
+	margin-top: 20px;
+}
+
+span.checkbox-label {
+	margin-right: 10px;
+}
+
+.table-form fieldset {
+	border-width: 1px 0 0 0;
+	max-width: 700px;
+	display: table;
+}
+
+fieldset.no-legend {
+	border: 0;
+}
+
+#group-selection-panel {
+	position: absolute;
+	top: 40px;
+	right: 20px;
+	float: right
+}
+
+.overview-section {
+	/*padding: 1px 10px 5px 20px; */
+	margin: 20px 0 0 0;
+}
+
+.balances-of-group {
+	display: table;
+}
+
+.balance-between-users {
+	display: table-row;
+}
+
+.balance-name,.balance-value,.balance-sum-label,.balance-sum-value {
+	display: table-cell;
+	padding-top: 5px;
+	padding-right: 10px;
+}
+
+.balance-value,.balance-sum-value {
+	text-align: right;
+}
+
+.balance-sum-label,.balance-sum-value {
+	border-top: 2px solid black; 
+}
+
+.transactions-overview {
+	display: table;
+	margin-right: 20px;
+	max-width: 1000px;
+}
+
+.transaction-overview {
+	display: table-row;
+}
+
+.transaction-overview:nth-child(odd) {
+	background:#d5eaf0;
+}
+
+.transaction-overview:nth-child(even) {
+	background:#d5eaf0;
+}
+
+.transaction-overview:nth-child(even):hover {
+	background-color: #D0DAFD;
+}
+
+.transaction-overview:nth-child(odd):hover {
+	background-color: #D0DAFD;
+}
+
+.last-changed-date,.flags,.creditor,.booking-date,.payee,.amount,.description,.users-share {
+	display: table-cell;
+	padding: 2px 15px 2px 5px;
+	border:1px solid #fff;
+	border-width:0 1px 1px 0;
+}
+
+.table-header {
+	display: table-row;
+	background:#91c5d4;
+}
+
+.table-column-title {
+	display: table-cell;
+//	font-weight: bold;
+	padding: 5px 15px 5px 5px;
+	border:1px solid #fff;
+	border-width:0 1px 1px 0;
+}
+
+.flags {
+	padding-left: 2px;
+}
+
+.last-changed-date,.booking-date,.amount,.users-share {
+	text-align: right;
+}
+
+
+#transactions-overview h4 {
+	margin-bottom: 5px;
+}
+
+.form-field,.multi-input-line {
+	height: 30px;
+	display: table-row;
+}
+
+#month-interval-input,#week-interval-input,#day-of-month-input,#weekday-number-input {
+	width: 3em;
+}
+
+.info-section {
+	max-width: 750px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.info, .success, .warning, .error, .validation {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding:15px 10px 15px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	max-width: 700px;
+}
+
+.info {
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url('../img/dialog-information.png');
+}
+
+.success {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image:url('../img/face-monkey.png');
+}
+
+.warning {
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url('../img/dialog-warning.png');
+}
+
+.error {
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('../img/dialog-error.png');
+}
+
+/* Statistik-Seite */
+
+svg {
+	position: relative;
+	width: 300px;
+	height: 400px;
+	margin: 20px;
+}
+
+.pie {
+	vertical-align: top;
+}
+
+.bar {
+	height: 500px;
+	width: 700px;
+}
