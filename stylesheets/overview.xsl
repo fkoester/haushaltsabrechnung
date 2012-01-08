@@ -104,18 +104,9 @@
 			<xsl:apply-templates select="balance" />
 			<div class="balance-sum-label"><strong>Insgesamt:</strong></div>
 			<div class="balance-sum-value">
-				<span>
-					<xsl:variable name="amount-sum" select="sum(balance/amount)" />
-					<xsl:choose>
-						<xsl:when test="$amount-sum >= 0">
-							<xsl:attribute name="class">positive-balance</xsl:attribute>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:attribute name="class">negative-balance</xsl:attribute>
-						</xsl:otherwise>
-					</xsl:choose>
-					<xsl:value-of select="ab-common:format-amount($amount-sum)" />
-				</span>
+				<xsl:call-template name="balance-value">
+                                                <xsl:with-param name="amount" select="sum(balance/amount)" />
+                                </xsl:call-template>
 			</div>
 		</div>
 	</xsl:template>
@@ -127,14 +118,9 @@
 			</div>
 			<div class="balance-value">
 				<span>
-					<xsl:choose>
-						<xsl:when test="amount >= 0">
-							<xsl:attribute name="class">positive-balance</xsl:attribute>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:attribute name="class">negative-balance</xsl:attribute>
-						</xsl:otherwise>
-					</xsl:choose><xsl:value-of select="ab-common:format-amount(amount)" />
+					<xsl:call-template name="balance-value">
+						<xsl:with-param name="amount" select="amount" />
+					</xsl:call-template>
 				</span>
 			</div>
 		</div>
@@ -148,6 +134,29 @@
 
 	<xsl:template match="message">
 		<li><b><xsl:value-of select="sender/@id" /></b> schreibt <em><a title="Nachricht lesen"><xsl:attribute name="href">read_message.xql?id=<xsl:value-of select="@id" /></xsl:attribute><xsl:value-of select="subject" /></a></em> in Gruppe <xsl:value-of select="/parameters/environment/groups/group[@id = current()/group/@id]/name" /></li>
+	</xsl:template>
+	
+	<xsl:template name="balance-value">
+		<xsl:param name="amount" />
+		<span>
+			<xsl:choose>
+		              <xsl:when test="$amount >= 0">
+        		              <xsl:attribute name="class">positive-balance</xsl:attribute>
+	                      </xsl:when>
+        	              <xsl:otherwise>
+                		      <xsl:attribute name="class">negative-balance</xsl:attribute>
+	                      </xsl:otherwise>
+        	        </xsl:choose>
+			<xsl:value-of select="ab-common:format-amount($amount)" />
+        	        <xsl:choose>
+	                	<xsl:when test="$amount >= 0">
+        	                	<xsl:text> H</xsl:text>
+                	        </xsl:when>
+	                        <xsl:otherwise>
+        	                        <xsl:text> S</xsl:text>
+                	        </xsl:otherwise>
+	                </xsl:choose>
+		</span>
 	</xsl:template>
 
 </xsl:stylesheet>
