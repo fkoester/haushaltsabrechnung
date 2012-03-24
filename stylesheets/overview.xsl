@@ -26,7 +26,7 @@
 
 			<section id="transactions-overview" class="overview-section">
 				<h3>Ausgaben</h3>
-				<p>Die zuletzt eingetragenen (oder geänderten) Ausgaben in der Gruppe <em><xsl:value-of select="/parameters/environment/current-group/group/name" /></em>, an deren Kosten du beteiligt bist:</p>
+				<p>Die zuletzt eingetragenen (oder geänderten) Ausgaben in der Gruppe <em><xsl:value-of select="/parameters/environment/current-group/group/name" /></em></p>
 				<xsl:apply-templates select="transactions[@creditor-id != /parameters/environment/current-user/user/@id]"/>
 				<xsl:apply-templates select="transactions[@creditor-id = /parameters/environment/current-user/user/@id]"/>
 			</section>
@@ -93,7 +93,7 @@
 				<xsl:value-of select="ab-common:format-amount(transaction-entries/transaction-entry/amount)" />
 			</span>
 			<span class="users-share">
-				<xsl:value-of select="ab-common:format-amount(transaction-entries/transaction-entry/amount div count(transaction-entries/transaction-entry/debtors/user))" />	
+				<xsl:value-of select="if(transaction-entries/transaction-entry/debtors/user/@id = /parameters/environment/current-user/user/@id) then ab-common:format-amount(transaction-entries/transaction-entry/amount div count(transaction-entries/transaction-entry/debtors/user)) else ab-common:format-amount(0)" />
 			</span>
 		</div>
 	</xsl:template>

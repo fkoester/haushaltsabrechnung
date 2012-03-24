@@ -115,7 +115,7 @@
 			<td><xsl:value-of select="format-dateTime((if(@last-modified) then @last-modified else @created), '[D01].[M01].[Y0001]')"/></td>
 			<td><xsl:value-of select="format-date(booking-date, '[D01].[M01].[Y0001]')"/></td>
 			<td><xsl:value-of select="ab-common:format-amount(transaction-entries/transaction-entry[1]/amount)"/></td>
-			<td><xsl:value-of select="ab-common:format-amount(transaction-entries/transaction-entry/amount div count(transaction-entries/transaction-entry/debtors/user))"/></td>
+			<td><xsl:value-of select="if(transaction-entries/transaction-entry/debtors/user/@id = /parameters/environment/current-user/user/@id) then ab-common:format-amount(transaction-entries/transaction-entry/amount div count(transaction-entries/transaction-entry/debtors/user)) else ab-common:format-amount(0)"/></td>
 			<td><xsl:apply-templates select="transaction-entries/transaction-entry[1]/debtors/user"/></td>
 			<td><xsl:value-of select="payee"/></td>
 			<td><xsl:value-of select="transaction-entries/transaction-entry[1]/description"/></td>

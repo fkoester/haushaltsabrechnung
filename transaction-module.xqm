@@ -81,14 +81,14 @@ declare function ab-transaction:get-transactions-of-group($group-id as xs:long) 
 declare function ab-transaction:get-transaction-entries-of-group($group-id as xs:long, $debtor-id as xs:string) as element(transactions) {
 
 	<transactions>
-	{ ab-transaction:split-multi-transaction-entries(doc("/db/ab/transactions.xml")/transactions/transaction[groups/group/@id = $group-id])[transaction-entries/transaction-entry/debtors/user/@id = $debtor-id] }
+	{ ab-transaction:split-multi-transaction-entries(doc("/db/ab/transactions.xml")/transactions/transaction[groups/group/@id = $group-id])[transaction-entries/transaction-entry/debtors/user/@id = $debtor-id or creditor/@id = xmldb:get-current-user()] }
 	</transactions>
 };
 
 declare function ab-transaction:get-transactions-of-group($group-id as xs:long, $max-per-user as xs:integer, $debtor-id as xs:string) as element(transactions)* {
 
 	for $creditor-id in ab-group:get-group-members($group-id)/@id
-	let $transactions := subsequence(reverse(doc("/db/ab/transactions.xml")/transactions/transaction[groups/group/@id = $group-id and creditor/@id = $creditor-id and transaction-entries/transaction-entry/debtors/user/@id = $debtor-id]), 1, $max-per-user)
+	let $transactions := subsequence(reverse(doc("/db/ab/transactions.xml")/transactions/transaction[groups/group/@id = $group-id and creditor/@id = $creditor-id and (transaction-entries/transaction-entry/debtors/user/@id = $debtor-id or creditor/@id = xmldb:get-current-user())]), 1, $max-per-user)
 	return
 		<transactions creditor-id="{$creditor-id}">
 			{ $transactions }
@@ -97,7 +97,7 @@ declare function ab-transaction:get-transactions-of-group($group-id as xs:long, 
 
 declare function ab-transaction:get-transaction-entries-of-group($group-id as xs:long, $max-per-user as xs:integer, $debtor-id as xs:string) as element(transactions)* {
 	for $creditor-id in ab-group:get-group-members($group-id)/@id
-	let $transactions := subsequence(reverse(ab-transaction:split-multi-transaction-entries(doc("/db/ab/transactions.xml")/transactions/transaction[groups/group/@id = $group-id and creditor/@id = $creditor-id])[transaction-entries/transaction-entry/debtors/user/@id = $debtor-id]), 1, $max-per-user)
+	let $transactions := subsequence(reverse(ab-transaction:split-multi-transaction-entries(doc("/db/ab/transactions.xml")/transactions/transaction[groups/group/@id = $group-id and creditor/@id = $creditor-id])[transaction-entries/transaction-entry/debtors/user/@id = $debtor-id or xmldb:get-current-user()]), 1, $max-per-user)
 	return
 		<transactions creditor-id="{$creditor-id}">
 			{ $transactions }
